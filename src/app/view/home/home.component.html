@@ -1,0 +1,349 @@
+<div class="content-wrapper" id="main-container">
+    <!-- Content Header (Page header) -->
+    <div class="content-header">
+      <div class="container-fluid d-none d-sm-block d-sm-none d-md-block">
+        <div class="row mb-2">
+          <div class="col-sm-6">
+            <!-- <h1 class="m-0 text-dark">Dashboard Client</h1> -->
+            <div class="row btn-group">
+                <div class="col-lg-1 btn-language">
+                    <button class="btn btn-primary" (click)="selectLang('fr')"
+                    class="btn btn-default" [class.btn-danger]="isCurrentLang('fr')" >francais</button>
+                </div>
+                <div class="col-lg-1 btn-language">
+                    <button class="btn btn-primary" >Arabe</button>
+                </div>
+                <div class="col-lg-1 btn-language">
+                    <button class="btn btn-primary" >Anglais</button>
+                </div>
+                <div class="col-lg-1 btn-language">
+                    <button class="btn btn-primary">langue</button>
+                </div>
+                <div class="col-lg-1 btn-language">
+                    <button class="btn btn-primary">langue</button>
+                </div>
+                <div class="col-lg-1 btn-language">
+                    <button class="btn btn-primary">langue</button>
+                </div>
+                
+            </div>
+          </div><!-- /.col -->
+          <div class="col-sm-6">
+            <ol class="breadcrumb float-sm-right">
+              <li class="breadcrumb-item"><button class="btn btn-default btn-language" (click)="openSimpleModal()">{{btn_modal}}</button></li>
+            </ol>
+          </div>
+        </div><!-- /.row -->
+      </div>
+    </div>
+    <hr>
+
+    <section class="content">
+      <div class="container-fluid">
+        <h1 class="m-0 text-dark">Francais</h1>
+        <p>Ajouter Une Langue</p>
+        <!-- Info boxes -->
+        <div class="row">
+            
+            <div class="col-md-8">
+                <form >
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label>{{typeNiveau.selectLang}}</label>
+                                <select name="selectLanguage" [(ngModel)]="selectLanguage" class="form-control">
+                                    <option>Selectionner Une Langue</option>
+                                    <option>francais</option>
+                                    <option>anglais</option>
+                                  </select>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label>{{typeNiveau.nivoParler}}</label>
+                                <select name="selectNivoParler" [(ngModel)]="selectNivoParler" required class="form-control">
+                                    <option>Selectionner Une Langue</option>
+                                    <option >{{typeValue.courant}}</option>
+                                    <option>{{typeValue.interim}}</option>
+                                    <option>{{typeValue.preinterim}}</option>
+                                    <option>{{typeValue.expert}}</option>
+                                  </select>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label>{{typeNiveau.nivoEcrit}}</label>
+                                <select name="selectNivoEcrit" [(ngModel)]="selectNivoEcrit" class="form-control">
+                                    <option>Selectionner Une Langue</option>
+                                    <option >{{typeValue.courant}}</option>
+                                    <option>{{typeValue.interim}}</option>
+                                    <option>{{typeValue.preinterim}}</option>
+                                    <option>{{typeValue.expert}}</option>
+                                  </select>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label>{{typeNiveau.nivoCompre}}</label>
+                                <select name="selectNivoComp" [(ngModel)]="selectNivoComp" class="form-control">
+                                    <option>Selectionner Une Langue</option>
+                                    <option >{{typeValue.courant}}</option>
+                                    <option>{{typeValue.interim}}</option>
+                                    <option>{{typeValue.preinterim}}</option>
+                                    <option>{{typeValue.expert}}</option>
+                                  </select>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <button type="submit" (click)="saveLang()" class="btn btn-primary">Enregistrer</button>
+                    </div>
+                </form>
+            </div>
+            <div class="col-md-3">
+                <div class="small-box nbr-langue">
+                    <div class="inner">
+                      <h5>Nombre de Language</h5>
+                      <p>5</p>
+                    </div>
+                    <div class="icon">
+                      <i class="ion ion-bag"></i>
+                    </div>
+                    
+                  </div>
+            </div>
+         
+        </div>
+
+        <div class="container">
+          <h4>Translate: Hello World</h4>
+          <!-- languages -->
+          <div class="btn-group">
+              <button *ngFor="let lang of supportedLanguages"
+                  (click)="selectLang(lang.value)"
+                  class="btn btn-default" [class.btn-primary]="isCurrentLang(lang.value)">
+                  {{ lang.display }}
+              </button>
+          </div>
+          <div>
+              <!-- translate with pipe -->
+              <p>
+                  Translate With Pipe: <strong>{{ 'hello world' }}</strong>
+              </p>
+      
+              <!-- translate with service -->
+              <p>
+                  Translate with Service: <strong>{{ translatedText }}</strong>
+              </p>
+          </div>
+      </div>
+        <!-- /.row -->
+
+        <div class="row">
+          <div class="col-md-12">
+            <div class="card">
+              <div class="card-head">
+                <div class="card-too">
+                    <div class="album py-5 bg-light">
+                        <div class="item" *ngFor="let user of users">
+                            <div class="row">
+                                <div class="col-lg-1">Francais</div>
+                                <div class="col-lg-2"><span>{{typeNiveau.nivoParler}}</span> : courer</div>
+                                <div class="col-lg-3"><span>{{typeNiveau.nivoEcrit}}</span> : Pre-intermi</div>
+                                <div class="col-lg-3"><span>{{typeNiveau.nivoCompre}}</span> : courant</div>
+                                <div class="col-lg-3">
+                                    <button class="btn btn-success btn-space" (click)="openModal('modifier')">{{btn_update}}</button>
+                                    <button class="btn btn-primary btn-space" (click)="openModal('detail')">{{btn_detail}}</button>
+                                    <button class="btn btn-danger btn-space" (click)="openModal('suprimer')">{{btn_delete}}</button>
+                                </div>
+
+                            </div>
+                        </div>
+                       
+                
+                   </div>                
+                </div>
+              </div> 
+            </div>
+            <!-- /.card -->
+          </div>
+        </div>
+      </div>
+    </section>
+
+
+    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h3 class="modal-title" id="exampleModalLabel">Detail</h3>
+              <button type="button" class="btn-close" data-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+              <div class="col">
+                <div class="row">
+                  <div class="col-sm-6"> <h6>Francais</h6> </div>
+                </div>
+                <hr>
+              
+                <div class="row">
+                  <div class="col-sm-6"> <h6>{{typeNiveau.nivoParler}}</h6> </div>
+                  <div class="col-sm-3">interim</div>
+                </div>
+                <hr>
+
+                <div class="row">
+                    <div class="col-sm-6"> <h6>{{typeNiveau.nivoEcrit}}</h6> </div>
+                    <div class="col-sm-3">interim</div>
+                  </div>
+                  <hr>
+                  <div class="row">
+                    <div class="col-sm-6"> <h6>{{typeNiveau.nivoCompre}}</h6> </div>
+                    <div class="col-sm-3">interim</div>
+                  </div>
+                  <hr>
+              </div>
+              
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>             
+            </div>
+          </div>
+        </div>
+      </div>
+
+
+      <div class="modal fade" id="modal-warning">
+        <div class="modal-dialog">
+          <div class="modal-content bg-danger">
+            <div class="modal-header">
+              <h4 class="modal-title">Delete Item Language</h4>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body">
+              <p>Cette Langue sera Suprimer</p>
+            </div>
+            <div class="modal-footer justify-content-between">
+              <button type="button" class="btn btn-outline-dark" data-dismiss="modal">Annuler</button>
+              <button type="button" class="btn btn-outline-dark">Comfirmer</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="modal fade" id="modal-detail">
+        <div class="modal-dialog">
+          <div class="modal-content bg-primary">
+            <div class="modal-header">
+              <h4 class="modal-title">Detail Item Language</h4>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body">
+                <div class="col">
+                  <div class="row">
+                    <div class="col-sm-6"> <h6>Francais</h6> </div>
+                  </div>
+                  <hr>
+                
+                  <div class="row">
+                    <div class="col-sm-6"> <h6>Niveau Parle</h6> </div>
+                    <div class="col-sm-3">interim</div>
+                  </div>
+                  <hr>
+  
+                  <div class="row">
+                      <div class="col-sm-6"> <h6>Niveau Ecrit</h6> </div>
+                      <div class="col-sm-3">interim</div>
+                    </div>
+                    <hr>
+                    <div class="row">
+                      <div class="col-sm-6"> <h6>Niveau Comprehension</h6> </div>
+                      <div class="col-sm-3">interim</div>
+                    </div>
+                    <hr>
+                </div>               
+              </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-outline-dark" data-dismiss="modal">Close</button>             
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="modal fade" id="modal-modifier">
+        <div class="modal-dialog">
+          <div class="modal-content bg-success">
+            <div class="modal-header">
+              <h4 class="modal-title">Update Item Language</h4>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body">
+                <form>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label>Choisir Une Langue</label>
+                                <select class="form-control">
+                                    <option>Selectionner Une Langue</option>
+                                    <option>francais</option>
+                                    <option>anglais</option>
+                                  </select>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label>Niveau Parle</label>
+                                <select class="form-control">
+                                    <option>Selectionner Une Langue</option>
+                                    <option>Moyen</option>
+                                    <option>Intermediaire</option>
+                                  </select>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label>Niveau Ecrit</label>
+                                <select class="form-control">
+                                    <option>Selectionner Une Langue</option>
+                                    <option>francais</option>
+                                    <option>anglais</option>
+                                  </select>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label>Niveau Comprehension</label>
+                                <select class="form-control">
+                                    <option>Selectionner Une Langue</option>
+                                    <option>Moyen</option>
+                                    <option>Intermediaire</option>
+                                  </select>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <button type="submit" class="btn btn-primary">Enregistrer</button>
+                    </div>
+                </form>               
+              </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-outline-dark" data-dismiss="modal">Close</button>             
+            </div>
+          </div>
+        </div>
+      </div>
+    
+
+
+  </div>
+
