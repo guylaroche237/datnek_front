@@ -6,8 +6,8 @@ export class User{
     public nivoEcrit!:string;
     public nivoComprehension!:string;
 
-    constructor(id:number,langue:string,nivoParler:string,nivoEcrit:string,nivoCompre:string){
-        this.id = id;
+    constructor(langue:string,nivoParler:string,nivoEcrit:string,nivoCompre:string){
+        
         this.langue = langue;
         this.nivoParler = nivoParler;
         this.nivoEcrit = nivoEcrit;

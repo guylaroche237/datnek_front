@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { TypeLangue } from 'src/app/model/type_langue';
 import { TypeNiveau } from 'src/app/model/type_niveau';
 import { TypeValue } from 'src/app/model/type_value';
 import { User } from 'src/app/model/user';
@@ -21,11 +22,14 @@ export class HomeComponent implements OnInit {
   public btn_detail!:string;
   public typeNiveau!:TypeNiveau;
   public typeValue!:TypeValue;
+  public typeLang!:TypeLangue;
   public users:User[] =[];
   public selectNivoParler!:string;
   public selectNivoEcrit!:string;
   public selectNivoComp!:string;
   public selectLanguage!:string;
+  public selectUser!:User;
+  public isValide:boolean = false;
 
   constructor(private _translate: TranslateService, private userProvider:UserProviderService,private userRequest:UserRequestService) { }
 
@@ -48,6 +52,7 @@ export class HomeComponent implements OnInit {
     this.userRequest.findAllUsers().subscribe(
       (res : User[]) =>{
         this.users = res;
+        if(res.length > 0){this.selectUser = res[0];}
       }
     );
   }
@@ -61,14 +66,36 @@ export class HomeComponent implements OnInit {
   } 
 
   saveLang(){
-    if(this.selectNivoParler != null && this.selectNivoEcrit != null && this.selectNivoComp != null){
-      let usr = new User(1,"Francais",this.selectNivoParler,this.selectNivoEcrit,this.selectNivoComp);
+    if(this.selectNivoParler != null && this.selectNivoEcrit != null && this.selectNivoComp != null && this.selectLanguage != null){
+      let usr = new User(this.selectLanguage,this.selectNivoParler,this.selectNivoEcrit,this.selectNivoComp);
       this.addUser(usr);
-      console.log(this.selectNivoParler);
-      console.log(this.selectNivoComp);
-      console.log(this.selectNivoEcrit);
     }
    
+
+  }
+
+  deleteUser(){
+    this.userRequest.deleteUser(this.selectUser.id).subscribe(
+      (res:void)=>{
+        console.log(this.selectUser.id);
+        this.isValide = false;
+        this.fetchUsers();
+      }
+    );
+   
+  }
+  updateUser(){
+    if(this.selectNivoParler != null && this.selectNivoEcrit != null && this.selectNivoComp != null && this.selectLanguage != null){
+      let usr = new User(this.selectLanguage,this.selectNivoParler,this.selectNivoEcrit,this.selectNivoComp);
+      usr.id = this.selectUser.id;
+      this.userRequest.updateUser(usr).subscribe(
+        res =>{
+          this.isValide = false;
+          this.fetchUsers();
+        }
+      );
+    
+    }
 
   }
 
@@ -92,11 +119,10 @@ refreshText() {
     this.btn_delete = this._translate.instant('btn_delete');
     this.typeNiveau = new TypeNiveau(this._translate);
     this.typeValue = new TypeValue(this._translate);
+    this.typeLang = new TypeLangue(this._translate);
 }
 
-  /* selectLanguage(lang:string){
-    this.translateService.use(lang);
-  } */
+ 
 
   
   public openSimpleModal():void{
@@ -112,19 +138,27 @@ refreshText() {
   }
 
   
-  public openModal(mode:string):void{
+  public openModal(mode:string,_user:User):void{
     const container = document.getElementById('main-container');
     const button = document.createElement('button');
     button.type = 'button';
     button.style.display = 'none';
+    this.selectUser = _user;
+    
     button.setAttribute('data-toggle','modal');  
     if(mode === 'modifier'){
+      this.selectNivoParler = this.selectUser.nivoParler;
+      this.selectNivoEcrit = this.selectUser.nivoEcrit;
+      this.selectNivoComp = this.selectUser.nivoComprehension
+      this.selectLanguage = this.selectUser.langue;
+      this.isValide = true;
       button.setAttribute('data-target','#modal-modifier');
 
     }else if(mode === 'detail'){
       button.setAttribute('data-target','#modal-detail');
 
     }else if(mode === 'suprimer'){
+      this.isValide = true;
       button.setAttribute('data-target','#modal-warning');
 
     }

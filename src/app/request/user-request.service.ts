@@ -24,8 +24,9 @@ export class UserRequestService {
     return this.http.get<User[]>(this.host+"/api/user/alls");
   }
 
-  public deleteUser(id:number) :void{
-     this.http.delete(this.host+"/api/user/delete/"+id);
+  public deleteUser(id:number):Observable<void> {
+    
+    return this.http.delete<void>(this.host+"/api/user/delete/"+id);
   }
 
   
