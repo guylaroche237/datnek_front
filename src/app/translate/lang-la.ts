@@ -1,12 +1,12 @@
-export const LANG_FR_NAME = 'fr';
+export const LANG_LA_NAME = 'la';
 
-export const LANG_FR_TRANS = {
+export const LANG_LA_TRANS = {
     'hello world': 'hello world',
-    "Add_lang": "ajouter une langue",
+    "Add_lang": "addere lingua",
     "arab_lang": "arab",
     "chn_lang": "chinois",
-    "cho_lang": "choosir la langue",
-    "com_level": "niveau comprehension",
+    "cho_lang": "addere lingua",
+    "com_level": "loqui grarer",
     "btn_delete": "suprimer",
     "detail": "detail",
     "dsh_lang": "Neerlandais",
@@ -17,15 +17,15 @@ export const LANG_FR_TRANS = {
     "hello": "Hello world",
     "niv_int": "intermediate",
     "courant":"courant",
-    "lat_lang": "latin",
-    "list_lang": "listes des languages",
-    "modal_close": "modal fermer",
-    "nbr_lang": "Number de languages",
+    "lat_lang": "Seres",
+    "list_lang": "lis linguarum",
+    "modal_close": "modal fermeo",
+    "nbr_lang": "numerus linguarum",
     "niv_pre_int": "pre-intermediate",
     "running": "running",
     "save": "enregistrer",
-    "spn_lang": "espagnol",
-    "spk_level": "niveau parler",
-    "update": "modifier",
-    "wri_level": "niveau ecrit"
+    "spn_lang": "espagnoli",
+    "spk_level": "loqui gradu",
+    "update": "mutare",
+    "wri_level": "Sereser"
 };

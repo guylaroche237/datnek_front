@@ -27,5 +27,5 @@ export const LANG_AR_TRANS = {
     "spk_level": "توسط",
     "update": "ونجور مون",
     "wri_level": "ماني",
-    "courant":"courant",
+    "courant":"ألما",
 };

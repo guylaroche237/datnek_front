@@ -15,6 +15,8 @@ import { TRANSLATION_PROVIDERS } from './translate/translation';
 import { TranslateService } from './translate/translate.service';
 import { UserProviderService } from './provider/user-provider.service';
 import { FormsModule } from '@angular/forms';
+import { GlobalService } from './provider/global.service';
+import { UsersComponent } from './view/users/users.component';
 //import { UserProviderService } from './provider/user-provider.service';
 
 
@@ -34,7 +36,8 @@ import { FormsModule } from '@angular/forms';
     AppComponent,
     HomeComponent,
     DashboardComponent,
-    TranslatePipe
+    TranslatePipe,
+    UsersComponent
   ],
   imports: [
     BrowserModule,
@@ -51,7 +54,7 @@ import { FormsModule } from '@angular/forms';
   
   }) */
   ],
-  providers: [TRANSLATION_PROVIDERS,TranslateService,UserProviderService],
+  providers: [TRANSLATION_PROVIDERS,TranslateService,UserProviderService,GlobalService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

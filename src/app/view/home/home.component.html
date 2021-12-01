@@ -6,25 +6,14 @@
           <div class="col-sm-6">
             <!-- <h1 class="m-0 text-dark">Dashboard Client</h1> -->
             <div class="row btn-group">
-                <div class="col-lg-1 btn-language">
-                    <button class="btn btn-primary" (click)="selectLang('fr')"
-                    class="btn btn-default" [class.btn-danger]="isCurrentLang('fr')" >francais</button>
-                </div>
-                <div class="col-lg-1 btn-language">
-                    <button class="btn btn-primary" >Arabe</button>
-                </div>
-                <div class="col-lg-1 btn-language">
-                    <button class="btn btn-primary" >Anglais</button>
-                </div>
-                <div class="col-lg-1 btn-language">
-                    <button class="btn btn-primary">langue</button>
-                </div>
-                <div class="col-lg-1 btn-language">
-                    <button class="btn btn-primary">langue</button>
-                </div>
-                <div class="col-lg-1 btn-language">
-                    <button class="btn btn-primary">langue</button>
-                </div>
+                
+                  <button  *ngFor="let lang of supportedLanguages"
+                  (click)="selectLang(lang.value)"
+                  class="btn-sm btn btn-default btn-space" [class.btn-primary]="isCurrentLang(lang.value,lang.key)">
+                  {{ lang.display }}
+              </button>
+                
+                
                 
             </div>
           </div><!-- /.col -->
@@ -40,8 +29,8 @@
 
     <section class="content">
       <div class="container-fluid">
-        <h1 class="m-0 text-dark">Francais</h1>
-        <p>Ajouter Une Langue</p>
+        <h1 class="m-0 text-dark">{{currentLangue}}</h1>
+        <p>{{translateByCode('Add_lang')}}</p>
         <!-- Info boxes -->
         <div class="row">
             
@@ -53,14 +42,14 @@
                                 <label>{{typeNiveau.selectLang}}</label>
                                 <select name="selectLanguage" [(ngModel)]="selectLanguage" class="form-control">
                                     <option>Selectionner Une Langue</option>
-                                    <option>{{typeLang.francais}}</option>
-                                    <option>{{typeLang.anglais}}</option>
-                                    <option>{{typeLang.arabe}}</option>
-                                    <option>{{typeLang.espagnol}}</option>
-                                    <option>{{typeLang.latin}}</option>
-                                    <option>{{typeLang.chinois}}</option>
-                                    <option>{{typeLang.allemand}}</option>
-                                    <option>{{typeLang.nerlandais}}</option>
+                                  <option value="{{typeLang.francais[0]}}">{{typeLang.francais[1]}}</option>
+                                    <option value="{{typeLang.anglais[0]}}">{{typeLang.anglais[1]}}</option>
+                                    <option value="{{typeLang.arabe[0]}}">{{typeLang.arabe[1]}}</option>
+                                    <option value="{{typeLang.espagnol[0]}}">{{typeLang.espagnol[1]}}</option>
+                                    <option value="{{typeLang.latin[0]}}">{{typeLang.latin[1]}}</option>
+                                    <option value="{{typeLang.chinois[0]}}">{{typeLang.chinois[1]}}</option>
+                                    <option value="{{typeLang.allemand[0]}}">{{typeLang.allemand[1]}}</option>
+                                    <option value="{{typeLang.nerlandais[0]}}">{{typeLang.nerlandais[1]}}</option>
                                   </select>
                             </div>
                         </div>
@@ -69,10 +58,10 @@
                                 <label>{{typeNiveau.nivoParler}}</label>
                                 <select name="selectNivoParler" [(ngModel)]="selectNivoParler" required class="form-control">
                                     <option>Selectionner Une Langue</option>
-                                    <option >{{typeValue.courant}}</option>
-                                    <option>{{typeValue.interim}}</option>
-                                    <option>{{typeValue.preinterim}}</option>
-                                    <option>{{typeValue.expert}}</option>
+                                    <option value="{{typeValue.courant[0]}}">{{typeValue.courant[1]}}</option>
+                                    <option value="{{typeValue.interim[0]}}">{{typeValue.interim[1]}}</option>
+                                    <option value="{{typeValue.preinterim[0]}}">{{typeValue.preinterim[1]}}</option>
+                                    <option value="{{typeValue.expert[0]}}">{{typeValue.expert[1]}}</option>
                                   </select>
                             </div>
                         </div>
@@ -83,10 +72,10 @@
                                 <label>{{typeNiveau.nivoEcrit}}</label>
                                 <select name="selectNivoEcrit" [(ngModel)]="selectNivoEcrit" class="form-control">
                                     <option>Selectionner Une Langue</option>
-                                    <option >{{typeValue.courant}}</option>
-                                    <option>{{typeValue.interim}}</option>
-                                    <option>{{typeValue.preinterim}}</option>
-                                    <option>{{typeValue.expert}}</option>
+                                    <option value="{{typeValue.courant[0]}}">{{typeValue.courant[1]}}</option>
+                                    <option value="{{typeValue.interim[0]}}">{{typeValue.interim[1]}}</option>
+                                    <option value="{{typeValue.preinterim[0]}}">{{typeValue.preinterim[1]}}</option>
+                                    <option value="{{typeValue.expert[0]}}">{{typeValue.expert[1]}}</option>
                                   </select>
                             </div>
                         </div>
@@ -94,11 +83,11 @@
                             <div class="form-group">
                                 <label>{{typeNiveau.nivoCompre}}</label>
                                 <select name="selectNivoComp" [(ngModel)]="selectNivoComp" class="form-control">
-                                    <option>Selectionner Une Langue</option>
-                                    <option >{{typeValue.courant}}</option>
-                                    <option>{{typeValue.interim}}</option>
-                                    <option>{{typeValue.preinterim}}</option>
-                                    <option>{{typeValue.expert}}</option>
+                                    
+                                    <option value="{{typeValue.courant[0]}}">{{typeValue.courant[1]}}</option>
+                                    <option value="{{typeValue.interim[0]}}">{{typeValue.interim[1]}}</option>
+                                    <option value="{{typeValue.preinterim[0]}}">{{typeValue.preinterim[1]}}</option>
+                                    <option value="{{typeValue.expert[0]}}">{{typeValue.expert[1]}}</option>
                                   </select>
                             </div>
                         </div>
@@ -111,8 +100,8 @@
             <div class="col-md-3">
                 <div class="small-box nbr-langue">
                     <div class="inner">
-                      <h5>Nombre de Language</h5>
-                      <p>5</p>
+                      <h5>{{nbreLang}}</h5>
+                      <h1>{{users.length}}</h1>
                     </div>
                     <div class="icon">
                       <i class="ion ion-bag"></i>
@@ -123,59 +112,8 @@
          
         </div>
 
-        <div class="container">
-          <h4>Translate: Hello World</h4>
-          <!-- languages -->
-          <div class="btn-group">
-              <button *ngFor="let lang of supportedLanguages"
-                  (click)="selectLang(lang.value)"
-                  class="btn btn-default" [class.btn-primary]="isCurrentLang(lang.value)">
-                  {{ lang.display }}
-              </button>
-          </div>
-          <div>
-              <!-- translate with pipe -->
-              <p>
-                  Translate With Pipe: <strong>{{ 'hello world' }}</strong>
-              </p>
-      
-              <!-- translate with service -->
-              <p>
-                  Translate with Service: <strong>{{ translatedText }}</strong>
-              </p>
-          </div>
-      </div>
-        <!-- /.row -->
+        <app-users [data] = "dataChild" (newItemEvent) ="addItem($event)"></app-users>
 
-        <div class="row">
-          <div class="col-md-12">
-            <div class="card">
-              <div class="card-head">
-                <div class="card-too">
-                    <div class="album py-5 bg-light">
-                        <div class="item" *ngFor="let user of users">
-                            <div class="row">
-                                <div class="col-lg-1">{{user.langue}}</div>
-                                <div class="col-lg-2"><span>{{typeNiveau.nivoParler}}</span> : {{user.nivoParler}}</div>
-                                <div class="col-lg-3"><span>{{typeNiveau.nivoEcrit}}</span> : Pre-intermi</div>
-                                <div class="col-lg-3"><span>{{typeNiveau.nivoCompre}}</span> : courant</div>
-                                <div class="col-lg-3">
-                                    <button class="btn btn-success btn-space" (click)="openModal('modifier',user)">{{btn_update}}</button>
-                                    <button class="btn btn-primary btn-space" (click)="openModal('detail',user)">{{btn_detail}}</button>
-                                    <button class="btn btn-danger btn-space" (click)="openModal('suprimer',user)">{{btn_delete}}</button>
-                                </div>
-
-                            </div>
-                        </div>
-                       
-                
-                   </div>                
-                </div>
-              </div> 
-            </div>
-            <!-- /.card -->
-          </div>
-        </div>
       </div>
     </section>
 
@@ -220,7 +158,7 @@
         </div>
       </div>
 
-
+       <!--  Modal pour Suprimer un compte -->
       <div class="modal fade" id="modal-warning">
         <div class="modal-dialog">
           <div class="modal-content bg-danger">
@@ -241,6 +179,7 @@
         </div>
       </div>
 
+       <!--  Modal pour afficher les Detail des Information -->
       <div class="modal fade" id="modal-detail">
         <div class="modal-dialog">
           <div class="modal-content bg-primary">
@@ -259,18 +198,18 @@
                 
                   <div class="row">
                     <div class="col-sm-6"> <h6>{{typeNiveau.nivoParler}}</h6> </div>
-                    <div class="col-sm-3">interim</div>
+                    <div class="col-sm-3">{{translateByCode(selectUser.nivoParler)}}</div>
                   </div>
                   <hr>
   
                   <div class="row">
                       <div class="col-sm-6"> <h6>{{typeNiveau.nivoEcrit}}</h6> </div>
-                      <div class="col-sm-3">interim</div>
+                      <div class="col-sm-3">{{translateByCode(selectUser.nivoEcrit)}}</div>
                     </div>
                     <hr>
                     <div class="row">
                       <div class="col-sm-6"> <h6>{{typeNiveau.nivoCompre}}</h6> </div>
-                      <div class="col-sm-3">interim</div>
+                      <div class="col-sm-3">{{translateByCode(selectUser.nivoComprehension)}}</div>
                     </div>
                     <hr>
                 </div>               
@@ -299,14 +238,14 @@
                             <label>{{typeNiveau.selectLang}}</label>
                             <select name="selectLanguage" [(ngModel)]="selectLanguage" class="form-control">
                                 <option>Selectionner Une Langue</option>
-                                <option>{{typeLang.francais}}</option>
-                                <option>{{typeLang.anglais}}</option>
-                                <option>{{typeLang.arabe}}</option>
-                                <option>{{typeLang.espagnol}}</option>
-                                <option>{{typeLang.latin}}</option>
-                                <option>{{typeLang.chinois}}</option>
-                                <option>{{typeLang.allemand}}</option>
-                                <option>{{typeLang.nerlandais}}</option>
+                                <option value="{{typeLang.francais[0]}}">{{typeLang.francais[1]}}</option>
+                                    <option value="{{typeLang.anglais[0]}}">{{typeLang.anglais[1]}}</option>
+                                    <option value="{{typeLang.arabe[0]}}">{{typeLang.arabe[1]}}</option>
+                                    <option value="{{typeLang.espagnol[0]}}">{{typeLang.espagnol[1]}}</option>
+                                    <option value="{{typeLang.latin[0]}}">{{typeLang.latin[1]}}</option>
+                                    <option value="{{typeLang.chinois[0]}}">{{typeLang.chinois[1]}}</option>
+                                    <option value="{{typeLang.allemand[0]}}">{{typeLang.allemand[1]}}</option>
+                                    <option value="{{typeLang.nerlandais[0]}}">{{typeLang.nerlandais[1]}}</option>
                               </select>
                         </div>
                     </div>
@@ -315,10 +254,10 @@
                             <label>{{typeNiveau.nivoParler}}</label>
                             <select name="selectNivoParler" [(ngModel)]="selectNivoParler" required class="form-control">
                                 <option>Selectionner Une Langue</option>
-                                <option >{{typeValue.courant}}</option>
-                                <option>{{typeValue.interim}}</option>
-                                <option>{{typeValue.preinterim}}</option>
-                                <option>{{typeValue.expert}}</option>
+                                <option value="{{typeValue.courant[0]}}">{{typeValue.courant[1]}}</option>
+                                <option value="{{typeValue.interim[0]}}">{{typeValue.interim[1]}}</option>
+                                <option value="{{typeValue.preinterim[0]}}">{{typeValue.preinterim[1]}}</option>
+                                <option value="{{typeValue.expert[0]}}">{{typeValue.expert[1]}}</option>
                               </select>
                         </div>
                     </div>
@@ -329,10 +268,10 @@
                             <label>{{typeNiveau.nivoEcrit}}</label>
                             <select name="selectNivoEcrit" [(ngModel)]="selectNivoEcrit" class="form-control">
                                 <option>Selectionner Une Langue</option>
-                                <option >{{typeValue.courant}}</option>
-                                <option>{{typeValue.interim}}</option>
-                                <option>{{typeValue.preinterim}}</option>
-                                <option>{{typeValue.expert}}</option>
+                                <option value="{{typeValue.courant[0]}}">{{typeValue.courant[1]}}</option>
+                                    <option value="{{typeValue.interim[0]}}">{{typeValue.interim[1]}}</option>
+                                    <option value="{{typeValue.preinterim[0]}}">{{typeValue.preinterim[1]}}</option>
+                                    <option value="{{typeValue.expert[0]}}">{{typeValue.expert[1]}}</option>
                               </select>
                         </div>
                     </div>
@@ -341,10 +280,10 @@
                             <label>{{typeNiveau.nivoCompre}}</label>
                             <select name="selectNivoComp" [(ngModel)]="selectNivoComp" class="form-control">
                                 <option>Selectionner Une Langue</option>
-                                <option >{{typeValue.courant}}</option>
-                                <option>{{typeValue.interim}}</option>
-                                <option>{{typeValue.preinterim}}</option>
-                                <option>{{typeValue.expert}}</option>
+                                <option value="{{typeValue.courant[0]}}">{{typeValue.courant[1]}}</option>
+                               <option value="{{typeValue.interim[0]}}">{{typeValue.interim[1]}}</option>
+                               <option value="{{typeValue.preinterim[0]}}">{{typeValue.preinterim[1]}}</option>
+                               <option value="{{typeValue.expert[0]}}">{{typeValue.expert[1]}}</option>
                               </select>
                         </div>
                     </div>
@@ -360,8 +299,5 @@
           </div>
         </div>
       </div>
-    
-
-
   </div>
 

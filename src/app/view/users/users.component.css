@@ -1,0 +1,13 @@
+.item{
+    background-color: white;
+    height: 10%;
+    margin: 10px;
+    padding: 15px;
+}
+span{
+    font-weight: bold;
+}
+.btn-space{
+    margin: 5px;
+    
+}

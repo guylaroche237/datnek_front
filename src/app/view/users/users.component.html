@@ -1,0 +1,31 @@
+  <div class="row">
+          <div class="col-md-12">
+            <div class="card">
+              <div class="card-head">
+                <div class="card-too">
+                    <div class="album py-5 bg-light">
+                        <div class="item" *ngFor="let user of data.users">
+                            <div class="row">
+                                <div class="col-lg-1">{{translateByCode(user.langue)}}</div>
+                                 <div class="col-lg-2"><span>{{data.typeNivo.nivoParler}}</span> : {{translateByCode(user.nivoParler)}}</div>
+                                <div class="col-lg-3"><span>{{data.typeNivo.nivoEcrit}}</span> : {{translateByCode(user.nivoEcrit)}}</div>
+                                <div class="col-lg-3"><span>{{data.typeNivo.nivoCompre}}</span> : {{translateByCode(user.nivoComprehension)}}</div>
+                                <div class="col-lg-3">
+                                    <button class="btn btn-success btn-space" (click)="sendData(user,'modifier')" >{{translateByCode(btn_update)}}</button>
+                                    <button class="btn btn-primary btn-space" (click)="sendData(user,'detail')">{{translateByCode(btn_detail)}}</button>
+                                    <button class="btn btn-danger btn-space" (click)="sendData(user,'suprimer')" >{{translateByCode(btn_delete)}}</button>
+                                    
+                                </div> 
+
+                            </div>
+                        </div>
+                       
+                
+                   </div>                
+                </div>
+              </div> 
+            </div>
+            
+          </div>
+ </div> 
+
