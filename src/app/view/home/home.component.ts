@@ -1,12 +1,15 @@
 import { Component, OnInit } from '@angular/core';
 import { DataChild } from 'src/app/model/data_child';
+import { DataForm } from 'src/app/model/data_form';
 import { DataParent } from 'src/app/model/data_parent';
+import { Language } from 'src/app/model/language';
 import { TypeLangue } from 'src/app/model/type_langue';
 import { TypeNiveau } from 'src/app/model/type_niveau';
 import { TypeValue } from 'src/app/model/type_value';
 import { User } from 'src/app/model/user';
 import { GlobalService } from 'src/app/provider/global.service';
 import { UserProviderService } from 'src/app/provider/user-provider.service';
+import { LangueRequestService } from 'src/app/request/langue-request.service';
 import { UserRequestService } from 'src/app/request/user-request.service';
 import { TranslateService } from 'src/app/translate/translate.service';
 /* import { TranslateService } from '@ngx-translate/core'; */
@@ -30,20 +33,22 @@ export class HomeComponent implements OnInit {
   public selectLanguage!:string;
   public selectUser!:User;
   public isValide:boolean = false;
-  public languesBD:string [] = [];
   public dataChild!:DataChild;
   public currentLangue!:string;
+  public data !:DataForm;
+  public languages:Language[] = [];
 
-  constructor(private _translate: TranslateService, private userProvider:UserProviderService,private userRequest:UserRequestService,public global:GlobalService) { }
+  constructor(private _translate: TranslateService, private userProvider:UserProviderService,private userRequest:UserRequestService,public global:GlobalService,private languageService:LangueRequestService) { }
 
   ngOnInit(): void {
-    this.fetchUsers();
+   // this.fetchUsers();
+    this.findAllsLanguages();
     // set current langage
     this.selectLang('fr');
 
   }
 
-  public fetchUsers(){
+  /* public fetchUsers(){
     this.userRequest.findAllUsers().subscribe(
       (res : User[]) =>{
         this.users = res;
@@ -52,29 +57,39 @@ export class HomeComponent implements OnInit {
           // par defaut la variable selectUser doit pas etre null
           this.selectUser = res[0];
           // on charge les differentes langues distinte de la bd on vide aussi 
-         
-
         }
       }
     );
+  } */
+
+  public findAllsLanguages():Language[]{
+    this.languageService.findAllsLanguages().subscribe(
+      (res : Language[]) =>{
+
+        this.languages = res;
+        
+        this.dataChild= new DataChild(this.languages,this.typeNiveau);
+        //this.refreshText();
+        this.data = new DataForm(new TypeValue(this._translate),new TypeLangue(this._translate),new TypeNiveau(this._translate),this.languages);
+       
+        console.log(this.data);
+      }
+    );
+    return this.languages;
   }
 
   public addUser(user :User){
     this.userRequest.saveUser(user).subscribe(
       (usr : User) => {
         this.users.push(usr);
-        this.dataChild.users = this.users;
-        if(!this.global.checkExiste(this.languesBD,usr.langue)){this.languesBD.push(usr.langue)}
+        this.dataChild.languages = this.users;
+      
       }
     );
   } 
 
   saveLang(){
     if(this.selectNivoParler != null && this.selectNivoEcrit != null && this.selectNivoComp != null && this.selectLanguage != null){
-      console.log(this.selectLanguage);
-      console.log(this.selectNivoComp);
-      console.log(this.selectNivoEcrit);
-      console.log(this.selectNivoParler);
       let usr = new User(this.selectLanguage,this.selectNivoParler,this.selectNivoEcrit,this.selectNivoComp);
       this.addUser(usr);
     }
@@ -82,10 +97,10 @@ export class HomeComponent implements OnInit {
 
   }
 
-  deleteUser(){
+ /*  deleteUser(){
     this.userRequest.deleteUser(this.selectUser.id).subscribe(
       (res:void)=>{
-        console.log(this.selectUser.id);
+       // console.log(this.selectUser.id);
         this.isValide = false;
         this.fetchUsers();
       }
@@ -105,9 +120,9 @@ export class HomeComponent implements OnInit {
     
     }
 
-  }
+  } */
 
-  isCurrentLang(lang: string,code:string) {
+  isCurrentLang(lang: string) {
     // check if the selected lang is current lang
     return lang === this._translate.currentLang;
 
@@ -127,7 +142,9 @@ refreshText() {
     this.typeNiveau = new TypeNiveau(this._translate);
     this.typeValue = new TypeValue(this._translate);
     this.typeLang = new TypeLangue(this._translate);
-    this.dataChild = new DataChild(this.users,this.typeNiveau);
+    this.dataChild = new DataChild(this.languages,this.typeNiveau);
+    
+    this.data = new DataForm(new TypeValue(this._translate),new TypeLangue(this._translate),new TypeNiveau(this._translate),this.findAllsLanguages());
     this.fetchLang();
 }
 
@@ -170,7 +187,6 @@ fetchLang(){
   public openSimpleModal():void{
     const container = document.getElementById('main-container');
     const button = document.createElement('button');
-  
     button.type = 'button';
     button.style.display = 'none';
     button.setAttribute('data-toggle','modal');  
@@ -209,8 +225,18 @@ fetchLang(){
   }
 
   addItem(parentData:DataParent){
-    this.openModal(parentData.mode,parentData.user);
+    this.openModal(parentData.mode,parentData.language);
 
+  }
+  receveData(parentData:DataParent){
+    this.openModal(parentData.mode,parentData.language);
+
+  }
+
+  receveDataFormulaire(langs:Language[]){
+    this.languages = langs;
+    this.dataChild = new DataChild(this.languages,this.typeNiveau);
+   //alert(langs.length);
   }
 
  

@@ -16,7 +16,6 @@ export class AppComponent {
 
   ngOnInit(): void {
     //au lancement de la page dirige vers dashboard
-  //  this.userProvider.fetchUsers();
     this.router.navigateByUrl("/datnek");
    
   }

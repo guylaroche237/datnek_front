@@ -1,5 +1,6 @@
 import { TranslateService } from "../translate/translate.service";
 
+// represente les differentes langue disponible 
 export class TypeLangue{
     public francais!:string[];
     public anglais!:string[];

@@ -5,6 +5,9 @@ import { TRANSLATIONS } from './translation'; // import our opaque token
 @Injectable()
 export class TranslateService {
     private _currentLang!: string;
+ 
+ 
+    // retourne la langue courante
 
     public get currentLang() {
         return this._currentLang;
@@ -14,10 +17,13 @@ export class TranslateService {
     constructor(@Inject(TRANSLATIONS) private _translations: any) {
     }
 
+    // modifie la langue courante
     public use(lang: string): void {
         // set current language
         this._currentLang = lang;
     }
+
+    // traducteur
 
     private translate(key: string): string {
         // private perform translation

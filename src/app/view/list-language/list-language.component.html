@@ -1,0 +1,19 @@
+
+ <div class="row">
+    <div class="col-md-12">
+      <div class="card">
+        <div class="card-head">
+          <div class="card-too">
+              <div class="album py-5 bg-light">
+                  <div class="item" *ngFor="let language of data.languages">
+                    <app-list-item [data] = "{'langue':language,'nivo':data.typeNivo}" (dataEvent)="receveData($event)"></app-list-item>      
+                  </div>
+             </div>                
+          </div>
+        </div> 
+      </div>
+      
+    </div>
+</div> 
+
+ 

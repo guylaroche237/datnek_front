@@ -1,11 +1,13 @@
+import { Language } from "./language";
 import { TypeNiveau } from "./type_niveau";
 import { User } from "./user";
 
+// c est le model que le component parent envoi au comp child
 export class DataChild{
-    public users!:User[];
+    public languages!:Language[];
     public typeNivo!:TypeNiveau;
-    constructor(user:User[],typ:TypeNiveau){
-        this.users = user;
+    constructor(languages:Language[],typ:TypeNiveau){
+        this.languages = languages;
         this.typeNivo = typ;
     }
 }

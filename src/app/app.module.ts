@@ -14,9 +14,14 @@ import { TranslatePipe } from './translate/translate.pipe';
 import { TRANSLATION_PROVIDERS } from './translate/translation';
 import { TranslateService } from './translate/translate.service';
 import { UserProviderService } from './provider/user-provider.service';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { GlobalService } from './provider/global.service';
 import { UsersComponent } from './view/users/users.component';
+import { NavBarComponent } from './view/nav-bar/nav-bar.component';
+import { ListLanguageComponent } from './view/list-language/list-language.component';
+import { ListItemComponent } from './view/list-item/list-item.component';
+import { LanguageFormComponent } from './view/language-form/language-form.component';
+import { DetailComponent } from './view/detail/detail.component';
 //import { UserProviderService } from './provider/user-provider.service';
 
 
@@ -37,13 +42,19 @@ import { UsersComponent } from './view/users/users.component';
     HomeComponent,
     DashboardComponent,
     TranslatePipe,
-    UsersComponent
+    UsersComponent,
+    NavBarComponent,
+    ListLanguageComponent,
+    ListItemComponent,
+    LanguageFormComponent,
+    DetailComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
-    FormsModule
+    FormsModule,
+    ReactiveFormsModule
    /*  TranslateModule.forRoot({
       defaultLanguage: 'en-US',
       loader: {

@@ -9,7 +9,7 @@
                 
                   <button  *ngFor="let lang of supportedLanguages"
                   (click)="selectLang(lang.value)"
-                  class="btn-sm btn btn-default btn-space" [class.btn-primary]="isCurrentLang(lang.value,lang.key)">
+                  class="btn-sm btn btn-default btn-space" [class.btn-primary]="isCurrentLang(lang.value)">
                   {{ lang.display }}
               </button>
                 
@@ -33,75 +33,15 @@
         <p>{{translateByCode('Add_lang')}}</p>
         <!-- Info boxes -->
         <div class="row">
-            
-            <div class="col-md-8">
-                <form >
-                    <div class="row">
-                        <div class="col-md-6">
-                            <div class="form-group">
-                                <label>{{typeNiveau.selectLang}}</label>
-                                <select name="selectLanguage" [(ngModel)]="selectLanguage" class="form-control">
-                                    <option>Selectionner Une Langue</option>
-                                  <option value="{{typeLang.francais[0]}}">{{typeLang.francais[1]}}</option>
-                                    <option value="{{typeLang.anglais[0]}}">{{typeLang.anglais[1]}}</option>
-                                    <option value="{{typeLang.arabe[0]}}">{{typeLang.arabe[1]}}</option>
-                                    <option value="{{typeLang.espagnol[0]}}">{{typeLang.espagnol[1]}}</option>
-                                    <option value="{{typeLang.latin[0]}}">{{typeLang.latin[1]}}</option>
-                                    <option value="{{typeLang.chinois[0]}}">{{typeLang.chinois[1]}}</option>
-                                    <option value="{{typeLang.allemand[0]}}">{{typeLang.allemand[1]}}</option>
-                                    <option value="{{typeLang.nerlandais[0]}}">{{typeLang.nerlandais[1]}}</option>
-                                  </select>
-                            </div>
-                        </div>
-                        <div class="col-md-6">
-                            <div class="form-group">
-                                <label>{{typeNiveau.nivoParler}}</label>
-                                <select name="selectNivoParler" [(ngModel)]="selectNivoParler" required class="form-control">
-                                    <option>Selectionner Une Langue</option>
-                                    <option value="{{typeValue.courant[0]}}">{{typeValue.courant[1]}}</option>
-                                    <option value="{{typeValue.interim[0]}}">{{typeValue.interim[1]}}</option>
-                                    <option value="{{typeValue.preinterim[0]}}">{{typeValue.preinterim[1]}}</option>
-                                    <option value="{{typeValue.expert[0]}}">{{typeValue.expert[1]}}</option>
-                                  </select>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-md-6">
-                            <div class="form-group">
-                                <label>{{typeNiveau.nivoEcrit}}</label>
-                                <select name="selectNivoEcrit" [(ngModel)]="selectNivoEcrit" class="form-control">
-                                    <option>Selectionner Une Langue</option>
-                                    <option value="{{typeValue.courant[0]}}">{{typeValue.courant[1]}}</option>
-                                    <option value="{{typeValue.interim[0]}}">{{typeValue.interim[1]}}</option>
-                                    <option value="{{typeValue.preinterim[0]}}">{{typeValue.preinterim[1]}}</option>
-                                    <option value="{{typeValue.expert[0]}}">{{typeValue.expert[1]}}</option>
-                                  </select>
-                            </div>
-                        </div>
-                        <div class="col-md-6">
-                            <div class="form-group">
-                                <label>{{typeNiveau.nivoCompre}}</label>
-                                <select name="selectNivoComp" [(ngModel)]="selectNivoComp" class="form-control">
-                                    
-                                    <option value="{{typeValue.courant[0]}}">{{typeValue.courant[1]}}</option>
-                                    <option value="{{typeValue.interim[0]}}">{{typeValue.interim[1]}}</option>
-                                    <option value="{{typeValue.preinterim[0]}}">{{typeValue.preinterim[1]}}</option>
-                                    <option value="{{typeValue.expert[0]}}">{{typeValue.expert[1]}}</option>
-                                  </select>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <button type="submit" (click)="saveLang()" class="btn btn-primary">Enregistrer</button>
-                    </div>
-                </form>
-            </div>
+          <div class="col-md-8">
+            <app-language-form [dataForm]="data" (dataEventForm)="receveDataFormulaire($event)"></app-language-form>
+          </div>
+          
             <div class="col-md-3">
                 <div class="small-box nbr-langue">
                     <div class="inner">
                       <h5>{{nbreLang}}</h5>
-                      <h1>{{users.length}}</h1>
+                      <h1>{{languages.length}}</h1>
                     </div>
                     <div class="icon">
                       <i class="ion ion-bag"></i>
@@ -112,7 +52,10 @@
          
         </div>
 
-        <app-users [data] = "dataChild" (newItemEvent) ="addItem($event)"></app-users>
+        <!-- <app-users [data] = "dataChild" (newItemEvent) ="addItem($event)"></app-users> -->
+        <app-list-language [data] = "dataChild" (dataEvent)="receveData($event)">
+
+        </app-list-language>
 
       </div>
     </section>
@@ -125,27 +68,27 @@
               <h3 class="modal-title" id="exampleModalLabel">Detail Current</h3>
               <button type="button" class="btn-close" data-dismiss="modal" aria-label="Close"></button>
             </div>
-            <div *ngIf="selectUser != null" class="modal-body">
+            <div  class="modal-body">
               <div class="col">
                 <div class="row">
-                  <div class="col-sm-6"> <h6>{{selectUser.langue}}</h6> </div>
+                  <div class="col-sm-6"> <h6>{{typeNiveau.selectLang}}</h6> </div>
                 </div>
                 <hr>
               
                 <div class="row">
                   <div class="col-sm-6"> <h6>{{typeNiveau.nivoParler}}</h6> </div>
-                  <div class="col-sm-3">interim</div>
+                    <div class="col-sm-3">{{translateByCode(selectNivoParler)}}</div>
                 </div>
                 <hr>
 
                 <div class="row">
                     <div class="col-sm-6"> <h6>{{typeNiveau.nivoEcrit}}</h6> </div>
-                    <div class="col-sm-3">interim</div>
+                    <div class="col-sm-3">{{translateByCode(selectNivoEcrit)}}</div>
                   </div>
                   <hr>
                   <div class="row">
                     <div class="col-sm-6"> <h6>{{typeNiveau.nivoCompre}}</h6> </div>
-                    <div class="col-sm-3">interim</div>
+                    <div class="col-sm-3">{{translateByCode(selectNivoComp)}}</div>
                   </div>
                   <hr>
               </div>
@@ -159,7 +102,7 @@
       </div>
 
        <!--  Modal pour Suprimer un compte -->
-      <div class="modal fade" id="modal-warning">
+    <!--   <div class="modal fade" id="modal-warning">
         <div class="modal-dialog">
           <div class="modal-content bg-danger">
             <div class="modal-header">
@@ -177,10 +120,10 @@
             </div>
           </div>
         </div>
-      </div>
+      </div> -->
 
        <!--  Modal pour afficher les Detail des Information -->
-      <div class="modal fade" id="modal-detail">
+      <!-- <div class="modal fade" id="modal-detail">
         <div class="modal-dialog">
           <div class="modal-content bg-primary">
             <div class="modal-header">
@@ -219,9 +162,9 @@
             </div>
           </div>
         </div>
-      </div>
+      </div> -->
 
-      <div class="modal fade" id="modal-modifier">
+      <!-- <div class="modal fade" id="modal-modifier">
         <div class="modal-dialog">
           <div class="modal-content bg-success">
             <div class="modal-header">
@@ -298,6 +241,6 @@
             </div>
           </div>
         </div>
-      </div>
+      </div> -->
   </div>
 

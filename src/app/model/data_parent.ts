@@ -1,11 +1,12 @@
+import { Language } from "./language";
 import { User } from "./user";
-
+// le model que le component child envoie au component parent
 export class DataParent{
-    public user!:User;
+    public language!:Language;
     public mode!:string;
 
-    constructor(usr:User,mode:string){
-        this.user = usr;
+    constructor(lang:Language,mode:string){
+        this.language = lang;
         this.mode = mode;
     }
 }
