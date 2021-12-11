@@ -1,1 +1,63 @@
-<p>detail works!</p>
+
+<div id="main-container">
+    <div class="modal fade" id="modal-detail">
+        <div class="modal-dialog">
+          <div class="modal-content bg-primary">
+            <div class="modal-header">
+              <h4 class="modal-title">Detail Item Language</h4>
+
+            </div>
+            <div class="modal-body" *ngIf="dataModal.language != null && openModal()">
+                <div class="col">
+                  <div class="row">
+                    <div class="col-sm-6"> <h6>{{translateByCode(dataModal.language.langue)}}</h6> </div>
+                  </div>
+                  <hr>
+                
+                  <div class="row">
+                    <div class="col-sm-6"> <h6>typeNiveau.nivoParler</h6> </div>
+                    <div class="col-sm-3">{{translateByCode(dataModal.language.nivoParler)}}</div>
+                  </div>
+                  <hr>
+  
+                  <div class="row">
+                      <div class="col-sm-6"> <h6>typeNiveau.nivoEcrit</h6> </div>
+                      <div class="col-sm-3">{{translateByCode(dataModal.language.nivoEcrit)}}</div>
+                    </div>
+                    <hr>
+                    <div class="row">
+                      <div class="col-sm-6"> <h6>typeNiveau.nivoCompre</h6> </div>
+                      <div class="col-sm-3">{{translateByCode(dataModal.language.nivoComprehension)}}</div>
+                    </div>
+                    <hr>
+                </div>               
+              </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-outline-dark" (click)="closeModal(dataModal.mode)">Close</button>             
+            </div>
+          </div>
+        </div>
+      </div> 
+
+
+      <div class="modal fade" id="modal-warning">
+        <div class="modal-dialog">
+          <div class="modal-content bg-danger">
+            <div class="modal-header">
+              <h4 class="modal-title">Delete  Language</h4>
+             
+            </div>
+            <div class="modal-body">
+              <p>Cette Langue sera Suprimer</p>
+            </div>
+            <div class="modal-footer justify-content-between">
+              <button type="button" class="btn btn-outline-dark" (click)="closeModal('rien')">Annuler</button>
+              <button type="button" class="btn btn-outline-dark" (click)="closeModal(dataModal.mode)">Comfirmer</button>
+            </div>
+          </div>
+        </div>
+      </div> 
+
+</div>
+ 
+    

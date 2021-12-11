@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
+import { Subject } from 'rxjs';
 import { DataChild } from 'src/app/model/data_child';
 import { DataForm } from 'src/app/model/data_form';
 import { DataParent } from 'src/app/model/data_parent';
@@ -21,7 +22,7 @@ import { TranslateService } from 'src/app/translate/translate.service';
 })
 export class HomeComponent implements OnInit {
   public nbreLang!: string;
-  public btn_modal!: string;
+ // public btn_modal!: string;
   public supportedLanguages: any[] = [];
   public typeNiveau!:TypeNiveau;
   public typeValue!:TypeValue;
@@ -37,6 +38,11 @@ export class HomeComponent implements OnInit {
   public currentLangue!:string;
   public data !:DataForm;
   public languages:Language[] = [];
+  public currentLang!:Language;
+  public modalData!:DataParent;
+
+ // @Output() dataEventCurrentLang:EventEmitter<Language> = new EventEmitter<Language>();
+  
 
   constructor(private _translate: TranslateService, private userProvider:UserProviderService,private userRequest:UserRequestService,public global:GlobalService,private languageService:LangueRequestService) { }
 
@@ -47,20 +53,7 @@ export class HomeComponent implements OnInit {
     this.selectLang('fr');
 
   }
-
-  /* public fetchUsers(){
-    this.userRequest.findAllUsers().subscribe(
-      (res : User[]) =>{
-        this.users = res;
-        this.dataChild= new DataChild(this.users,this.typeNiveau);
-        if(res.length > 0){
-          // par defaut la variable selectUser doit pas etre null
-          this.selectUser = res[0];
-          // on charge les differentes langues distinte de la bd on vide aussi 
-        }
-      }
-    );
-  } */
+ 
 
   public findAllsLanguages():Language[]{
     this.languageService.findAllsLanguages().subscribe(
@@ -70,7 +63,7 @@ export class HomeComponent implements OnInit {
         
         this.dataChild= new DataChild(this.languages,this.typeNiveau);
         //this.refreshText();
-        this.data = new DataForm(new TypeValue(this._translate),new TypeLangue(this._translate),new TypeNiveau(this._translate),this.languages);
+        this.data = new DataForm(new TypeValue(this._translate),new TypeLangue(this._translate),new TypeNiveau(this._translate),new Language('','','',''));
        
         console.log(this.data);
       }
@@ -78,7 +71,7 @@ export class HomeComponent implements OnInit {
     return this.languages;
   }
 
-  public addUser(user :User){
+/*   public addUser(user :User){
     this.userRequest.saveUser(user).subscribe(
       (usr : User) => {
         this.users.push(usr);
@@ -86,16 +79,16 @@ export class HomeComponent implements OnInit {
       
       }
     );
-  } 
+  }  */
 
-  saveLang(){
+ /*  saveLang(){
     if(this.selectNivoParler != null && this.selectNivoEcrit != null && this.selectNivoComp != null && this.selectLanguage != null){
       let usr = new User(this.selectLanguage,this.selectNivoParler,this.selectNivoEcrit,this.selectNivoComp);
       this.addUser(usr);
     }
    
 
-  }
+  } */
 
  /*  deleteUser(){
     this.userRequest.deleteUser(this.selectUser.id).subscribe(
@@ -122,11 +115,11 @@ export class HomeComponent implements OnInit {
 
   } */
 
-  isCurrentLang(lang: string) {
+ /*  isCurrentLang(lang: string) {
     // check if the selected lang is current lang
     return lang === this._translate.currentLang;
 
-}
+} */
 
 selectLang(lang: string) {
     // choisir une langue;
@@ -138,21 +131,21 @@ selectLang(lang: string) {
 refreshText() {
     // refresh translation when language change
     this.nbreLang = this._translate.instant('nbr_lang');
-    this.btn_modal = this._translate.instant('modal_close');
+  //  this.btn_modal = this._translate.instant('modal_close');
     this.typeNiveau = new TypeNiveau(this._translate);
     this.typeValue = new TypeValue(this._translate);
     this.typeLang = new TypeLangue(this._translate);
     this.dataChild = new DataChild(this.languages,this.typeNiveau);
     
-    this.data = new DataForm(new TypeValue(this._translate),new TypeLangue(this._translate),new TypeNiveau(this._translate),this.findAllsLanguages());
-    this.fetchLang();
+    this.data = new DataForm(new TypeValue(this._translate),new TypeLangue(this._translate),new TypeNiveau(this._translate),new Language('','','',''));
+   // this.fetchLang();
 }
 
 translateByCode(code:string){
   let res = this._translate.instant(code);
   return res;
 }
-
+/* 
 fetchLang(){
   //this.supportedLanguages
   //list represente la liste des langues suporter par le systeme
@@ -179,7 +172,7 @@ fetchLang(){
  
 
   
-}
+} */
 
  
 
@@ -229,7 +222,13 @@ fetchLang(){
 
   }
   receveData(parentData:DataParent){
-    this.openModal(parentData.mode,parentData.language);
+    this.data = new DataForm(new TypeValue(this._translate),new TypeLangue(this._translate),new TypeNiveau(this._translate),parentData.language);
+    //alert(parentData.mode);
+    this.modalData = parentData;
+    // console.log(this.data);
+   // this.dataEventCurrentLang.emit(parentData.language);
+    
+   // this.openModal(parentData.mode,parentData.language);
 
   }
 
@@ -238,6 +237,8 @@ fetchLang(){
     this.dataChild = new DataChild(this.languages,this.typeNiveau);
    //alert(langs.length);
   }
+
+ 
 
  
 

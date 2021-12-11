@@ -1,12 +1,80 @@
 
-    <div class="">
-        <form [formGroup]="languageForm" (ngSubmit)="onSubmit()">
+    <div class=""  >
+        <form  [formGroup]="languageForm" (ngSubmit)="onSubmit()">
             <div class="row">
                 <div class="col-md-6">
                     <div class="form-group">
                         <label>{{dataForm.label.selectLang}}</label>
-                        <select formControlName="langue" class="form-control">
+                        <select [(ngModel)]="dataForm.currentLang.langue" formControlName="langue" class="form-control">
+                            <option value="">Selectionner Une Langue</option>
+                          <option value="{{dataForm.lang.francais[0]}}">{{dataForm.lang.francais[1]}}</option>
+                            <option value="{{dataForm.lang.anglais[0]}}">{{dataForm.lang.anglais[1]}}</option>
+                            <option value="{{dataForm.lang.arabe[0]}}">{{dataForm.lang.arabe[1]}}</option>
+                            <option value="{{dataForm.lang.espagnol[0]}}">{{dataForm.lang.espagnol[1]}}</option>
+                            <option value="{{dataForm.lang.latin[0]}}">{{dataForm.lang.latin[1]}}</option>
+                            <option value="{{dataForm.lang.chinois[0]}}">{{dataForm.lang.chinois[1]}}</option>
+                            <option value="{{dataForm.lang.allemand[0]}}">{{dataForm.lang.allemand[1]}}</option>
+                            <option value="{{dataForm.lang.nerlandais[0]}}">{{dataForm.lang.nerlandais[1]}}</option>
+                          </select>
+                          <div *ngIf="submitted && f.langue.errors" class="invalid-feedback">
+                            <div *ngIf="f.langue.errors.required">Title is required</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label>{{dataForm.label.nivoParler}}</label>
+                        <select [(ngModel)]="dataForm.currentLang.nivoParler" formControlName="nivoParler" required class="form-control">
                             <option>Selectionner Une Langue</option>
+                            <option value="{{dataForm.value.courant[0]}}">{{dataForm.value.courant[1]}}</option>
+                            <option value="{{dataForm.value.interim[0]}}">{{dataForm.value.interim[1]}}</option>
+                            <option value="{{dataForm.value.preinterim[0]}}">{{dataForm.value.preinterim[1]}}</option>
+                            <option value="{{dataForm.value.expert[0]}}">{{dataForm.value.expert[1]}}</option>
+                          </select>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label>{{dataForm.label.nivoEcrit}}</label>
+                        <select [(ngModel)]="dataForm.currentLang.nivoEcrit" formControlName="nivoEcrit" class="form-control">
+                            <option>Selectionner Une Langue</option>
+                            <option value="{{dataForm.value.courant[0]}}">{{dataForm.value.courant[1]}}</option>
+                            <option value="{{dataForm.value.interim[0]}}">{{dataForm.value.interim[1]}}</option>
+                            <option value="{{dataForm.value.preinterim[0]}}">{{dataForm.value.preinterim[1]}}</option>
+                            <option value="{{dataForm.value.expert[0]}}">{{dataForm.value.expert[1]}}</option>
+                          </select>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label>{{dataForm.label.nivoCompre}}</label>
+                        <select [(ngModel)]="dataForm.currentLang.nivoComprehension" formControlName="nivoComprehension" class="form-control">
+                            
+                            <option>Selectionner Une Langue</option>
+                            <option value="{{dataForm.value.courant[0]}}">{{dataForm.value.courant[1]}}</option>
+                            <option value="{{dataForm.value.interim[0]}}">{{dataForm.value.interim[1]}}</option>
+                            <option value="{{dataForm.value.preinterim[0]}}">{{dataForm.value.preinterim[1]}}</option>
+                            <option value="{{dataForm.value.expert[0]}}">{{dataForm.value.expert[1]}}</option>
+                          </select>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group">
+                <button type="submit"  class="btn btn-primary">Enregistrer</button>
+            </div>
+        </form>
+    </div>
+<!-- 
+    <div class="" *ngIf="dataForm.currentLang.langue != '' && refrechForm() " >
+        <form  [formGroup]="languageFormUPD" (ngSubmit)="onSubmit">
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label>{{dataForm.label.selectLang}}</label>
+                        <select formControlName="lang" class="form-control">
+                           
                           <option value="{{dataForm.lang.francais[0]}}">{{dataForm.lang.francais[1]}}</option>
                             <option value="{{dataForm.lang.anglais[0]}}">{{dataForm.lang.anglais[1]}}</option>
                             <option value="{{dataForm.lang.arabe[0]}}">{{dataForm.lang.arabe[1]}}</option>
@@ -65,4 +133,4 @@
                 <button type="submit"  class="btn btn-primary">Enregistrer</button>
             </div>
         </form>
-    </div>
+    </div> -->
