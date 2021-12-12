@@ -8,6 +8,7 @@ export const LANG_AR_TRANS = {
     "cho_lang": "ائم اللغات",
     "com_level": "ألمانية",
     "btn_delete": "ألمانية",
+    "btn_save": "للغ",
     "detail": "ألمانية",
     "dsh_lang": "ائم اللغات",
     "eng_lang": "ألمانية",

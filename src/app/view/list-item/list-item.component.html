@@ -1,11 +1,11 @@
- <div class="row">
+ <div class="row item">
     <div class="col-lg-1">{{translateByCode(data['langue'].langue)}}</div>
-     <div class="col-lg-2"><span>{{data['nivo'].nivoParler}}</span> : {{translateByCode(data['langue'].nivoParler)}}</div>
-    <div class="col-lg-3"><span>{{data['nivo'].nivoEcrit}}</span> : {{translateByCode(data['langue'].nivoEcrit)}}</div>
-    <div class="col-lg-3"><span>{{data['nivo'].nivoCompre}}</span> : {{translateByCode(data['langue'].nivoComprehension)}}</div>
+     <div class="col-lg-2"><span>{{translateByCode('spk_level')}}</span> : {{translateByCode(data['langue'].nivoParler)}}</div>
+    <div class="col-lg-3"><span>{{translateByCode('wri_level')}}</span> : {{translateByCode(data['langue'].nivoEcrit)}}</div>
+    <div class="col-lg-3"><span>{{translateByCode('com_level')}}</span> : {{translateByCode(data['langue'].nivoComprehension)}}</div>
     <div class="col-lg-3">
         <button class="btn btn-success btn-space" (click)="sendData(data['langue'],'modifier')" >{{translateByCode(btn_update)}}</button>
-        <button class="btn btn-primary btn-space" (click)="sendData(data['langue'],'detail')">{{translateByCode(btn_detail)}}</button>
+        <button class="btn btn-default btn-space" (click)="sendData(data['langue'],'detail')">{{translateByCode(btn_detail)}}</button>
         <button class="btn btn-danger btn-space" (click)="sendData(data['langue'],'suprimer')" >{{translateByCode(btn_delete)}}</button> 
         
     </div> 

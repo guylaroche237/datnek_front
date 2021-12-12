@@ -8,6 +8,7 @@ export const LANG_FR_TRANS = {
     "cho_lang": "choosir la langue",
     "com_level": "niveau comprehension",
     "btn_delete": "suprimer",
+    "btn_save": "Enregistrer",
     "detail": "detail",
     "dsh_lang": "Neerlandais",
     "eng_lang": "Anglais",

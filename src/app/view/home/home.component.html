@@ -1,6 +1,6 @@
-<div class="content-wrapper" id="main-container">
+<div id="main-container">
     <!-- Component du Nav Bar-->
-    <app-nav-bar [languages] = "dataChild.languages"></app-nav-bar>
+  <app-nav-bar [dataNav] = "{'languages':dataChild.languages,'isActive':isActive}"></app-nav-bar>
     <!-- Fin Nav Bar-->
     <hr>
 
@@ -19,7 +19,7 @@
             <div class="col-md-3">
                 <div class="small-box nbr-langue">
                     <div class="inner">
-                      <h5>{{nbreLang}}</h5>
+                      <h5>{{translateByCode('nbr_lang')}}</h5>
                       <h1>{{languages.length}}</h1>
                     </div>
                   </div>
@@ -35,7 +35,7 @@
       </div>
     </section>
        <!-- Component des Modal (Boite de dialogue) -->
-      <app-detail [dataModal] = "modalData"></app-detail>
+      <app-detail [dataModal] = "modalData" (detailEmiter)="receveDataDetailModal($event)"></app-detail>
       <!-- Fin du Component modal-->
   </div>
 

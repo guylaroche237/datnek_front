@@ -1,4 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { DataNavbar } from 'src/app/model/data_nav_bar';
 import { Language } from 'src/app/model/language';
 import { TranslateService } from 'src/app/translate/translate.service';
 
@@ -8,9 +9,11 @@ import { TranslateService } from 'src/app/translate/translate.service';
   styleUrls: ['./nav-bar.component.css']
 })
 export class NavBarComponent implements OnInit {
-  @Input() languages!:Language[];
+  //@Input() dataNav!:DataNavbar;
+  @Input() dataNav!:any;
   public supportedLanguages: any[] = [];
-  public modalButton:string = "modal_close"; 
+  public modalButton:string = "modal_close";
+  public defaultLangues:Language[] = [];
 
   constructor(private _translate: TranslateService) { }
 
@@ -25,6 +28,12 @@ export class NavBarComponent implements OnInit {
       { display: this._translate.instant('lat_lang'), value: 'al',key:'lat_lang' },
       { display: this._translate.instant('spn_lang'), value: 'es',key:'spn_lang' },
     ];
+    if(this.dataNav['languages'].length == 0){ 
+      for(let i = 0;i<3;i++){
+        let defaultLangue:Language = new Language(this.supportedLanguages[i].key,'','','');
+        this.defaultLangues.push(defaultLangue);
+      }
+    }
   }
 
   selectLang(lang: Language) {
@@ -49,6 +58,12 @@ isCurrentLang(langue: Language) {
   });
   return valueLangue === this._translate.currentLang;
 
+}
+
+isActive(){
+ // console.log('-----------------------');
+//  console.log(this.dataNav.isActive);
+  return this.dataNav.isActive;
 }
 
 translateByCode(code:string){

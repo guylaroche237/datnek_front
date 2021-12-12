@@ -2,6 +2,7 @@ import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { DataChild } from 'src/app/model/data_child';
 import { DataParent } from 'src/app/model/data_parent';
 import { Language } from 'src/app/model/language';
+import { TypeNiveau } from 'src/app/model/type_niveau';
 import { TranslateService } from 'src/app/translate/translate.service';
 
 @Component({

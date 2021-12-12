@@ -8,6 +8,7 @@ export const LANG_NR_TRANS = {
     "cho_lang": "aantal laang",
     "com_level": "coomniveau",
     "btn_delete": "verwijderen",
+    "btn_save": "nuiopo",
     "detail": "detail",
     "dsh_lang": "Neerlandais",
     "eng_lang": "Engels",

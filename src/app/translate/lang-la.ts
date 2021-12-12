@@ -8,6 +8,7 @@ export const LANG_LA_TRANS = {
     "cho_lang": "addere lingua",
     "com_level": "loqui grarer",
     "btn_delete": "suprimer",
+    "btn_save": "nuiotos",
     "detail": "detail",
     "dsh_lang": "Neerlandais",
     "eng_lang": "Anglais",

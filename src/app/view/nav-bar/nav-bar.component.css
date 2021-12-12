@@ -2,3 +2,9 @@
     margin: 8px;
     
 }
+.default{
+    background-color: beige;
+}
+.activer{
+    background-color: blue;
+}

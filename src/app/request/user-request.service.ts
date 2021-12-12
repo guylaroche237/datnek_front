@@ -29,5 +29,9 @@ export class UserRequestService {
     return this.http.delete<void>(this.host+"/api/user/delete/"+id);
   }
 
+  public isExiste(langue:string):Observable<boolean>{
+    return this.http.get<boolean>(this.host+"/existe/"+langue);
+  }
+
   
 }

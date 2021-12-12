@@ -8,6 +8,7 @@ export const LANG_AL_TRANS = {
   "cho_lang": "choosir la langue",
   "com_level": "niveau comprehension",
   "btn_delete": "unterdrücken",
+  "btn_save": "ujiioty",
   "detail": "detail",
   "dsh_lang": "Neerlandais",
   "eng_lang": "Anglais",

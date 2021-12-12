@@ -8,13 +8,15 @@ export class DataForm{
     public lang!:TypeLangue;
     public label!:TypeNiveau;
     public currentLang!:Language;
-  //  public languages!:Language[];
+    public languages!:Language[];
+    public code!:string;
     
-    constructor(val:TypeValue,lang:TypeLangue,label:TypeNiveau,current:Language){
+    constructor(val:TypeValue,lang:TypeLangue,label:TypeNiveau,current:Language,languages:Language[],code:string){
         this.value = val;
         this.lang = lang;
         this.label = label;
         this.currentLang = current;
-      //  this.languages = langs;
+        this.languages = languages;
+        this.code = code;
     }
 }

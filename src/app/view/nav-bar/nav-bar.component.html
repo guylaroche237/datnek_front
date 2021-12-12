@@ -1,24 +1,19 @@
 <div class="content-header">
     <div class="container-fluid d-none d-sm-block d-sm-none d-md-block">
       <div class="row mb-2">
-        <div class="col-sm-6">
+        <div class="col-sm-8 float-start">
           <!-- <h1 class="m-0 text-dark">Dashboard Client</h1> -->
-          <div class="row btn-group">
-              
-                <button  *ngFor="let lang of languages"
+          <div class="row btn-group">         
+                <button  *ngFor="let lang of dataNav['languages']"
                 (click)="selectLang(lang)"
                 class="btn-sm btn btn-default btn-space" [class.btn-primary]="isCurrentLang(lang)">
                 {{ translateByCode(lang.langue) }}
-            </button>
-              
-              
-              
+            </button>           
           </div>
         </div><!-- /.col -->
-        <div class="col-sm-6">
-          <ol class="breadcrumb float-sm-right">
-            <li class="breadcrumb-item"><button class="btn btn-default btn-language" >{{translateByCode(modalButton)}}</button></li>
-          </ol>
+        <div class="col-sm-offset-3 col-sm-2 float-end">
+          <button class=" btn-language" [ngClass] =" isActive() == false ? 'btn btn-default':'btn btn-primary'">{{translateByCode(modalButton)}}</button>
+       
         </div>
       </div><!-- /.row -->
     </div>

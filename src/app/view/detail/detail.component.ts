@@ -1,6 +1,8 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { DataNavbar } from 'src/app/model/data_nav_bar';
 import { DataParent } from 'src/app/model/data_parent';
 import { Language } from 'src/app/model/language';
+import { LangueRequestService } from 'src/app/request/langue-request.service';
 import { TranslateService } from 'src/app/translate/translate.service';
 
 @Component({
@@ -10,9 +12,10 @@ import { TranslateService } from 'src/app/translate/translate.service';
 })
 export class DetailComponent implements OnInit {
   @Input() dataModal!:DataParent; 
+  @Output() detailEmiter:EventEmitter<any> = new EventEmitter<any>();
   public nullLanguage!:Language;
 
-  constructor(private _translate: TranslateService) { }
+  constructor(private _translate: TranslateService,private languageRequest:LangueRequestService) { }
 
   ngOnInit(): void {
     
@@ -33,6 +36,7 @@ public openModal():boolean{
   if(this.dataModal.mode === 'modifier'){
    // button.setAttribute('data-target','#modal-modifier');
   }else if(this.dataModal.mode === 'detail'){
+    console.log(this.dataModal.language);
     button.setAttribute('data-target','#modal-detail');
 
   }else if(this.dataModal.mode === 'suprimer'){
@@ -51,11 +55,25 @@ public closeModal(mode:string){
   button.style.display = 'none';
   button.setAttribute('data-toggle','modal');
   if(mode == "detail"){
+    let map = {'mode':'detail'};
+    this.detailEmiter.emit(map);
     button.setAttribute('data-target','#modal-detail');
-  }else if(this.dataModal.mode == "suprimer"){
+  }else if(mode == "suprimer"){
+    this.languageRequest.deleteLanguage(this.dataModal.language.id).subscribe(
+      (res:void) =>{
+        this.languageRequest.findAllsLanguages().subscribe(
+          (languages:Language[]) =>{
+            let map = {'mode':'suprimer','languages':languages};
+            this.detailEmiter.emit(map);
+          }
+        );
+      }
+    );
+
     button.setAttribute('data-target','#modal-warning');
   }else{
     // on ne fait rien
+    button.setAttribute('data-target','#modal-warning');
   }
   this.dataModal.language = this.nullLanguage;
   

@@ -1,7 +1,7 @@
 
-<div id="main-container">
+<div id="main-container" >
     <div class="modal fade" id="modal-detail">
-        <div class="modal-dialog">
+        <div class="modal-dialog" *ngIf="dataModal != null">
           <div class="modal-content bg-primary">
             <div class="modal-header">
               <h4 class="modal-title">Detail Item Language</h4>
@@ -15,18 +15,18 @@
                   <hr>
                 
                   <div class="row">
-                    <div class="col-sm-6"> <h6>typeNiveau.nivoParler</h6> </div>
+                    <div class="col-sm-6"> <h6>{{translateByCode('spk_level')}}</h6> </div>
                     <div class="col-sm-3">{{translateByCode(dataModal.language.nivoParler)}}</div>
                   </div>
                   <hr>
   
                   <div class="row">
-                      <div class="col-sm-6"> <h6>typeNiveau.nivoEcrit</h6> </div>
+                      <div class="col-sm-6"> <h6>{{translateByCode('spk_level')}}</h6> </div>
                       <div class="col-sm-3">{{translateByCode(dataModal.language.nivoEcrit)}}</div>
                     </div>
                     <hr>
                     <div class="row">
-                      <div class="col-sm-6"> <h6>typeNiveau.nivoCompre</h6> </div>
+                      <div class="col-sm-6"> <h6>{{translateByCode('com_level')}}</h6> </div>
                       <div class="col-sm-3">{{translateByCode(dataModal.language.nivoComprehension)}}</div>
                     </div>
                     <hr>
