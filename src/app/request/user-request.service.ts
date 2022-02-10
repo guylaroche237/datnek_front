@@ -8,30 +8,33 @@ import { User } from '../model/user';
 })
 export class UserRequestService {
 
-  private host:String="http://localhost:8080";
+  private host:String="http://localhost:3000";
 
   constructor(private http: HttpClient) { }
 
   public saveUser(user:User) :Observable<User>{
-    return this.http.post<User>(this.host+"/api/user/save",user);
+    return this.http.post<User>(this.host+"/users",user);
   }
 
   public updateUser(user:User) :Observable<User>{
-    return this.http.put<User>(this.host+"/api/user/update",user);
+    return this.http.put<User>(this.host+"/users/"+user.id,user);
   }
 
   public findAllUsers() :Observable<User[]>{
-    return this.http.get<User[]>(this.host+"/api/user/alls");
+    return this.http.get<User[]>(this.host+"/users");
   }
 
   public deleteUser(id:number):Observable<void> {
-    
-    return this.http.delete<void>(this.host+"/api/user/delete/"+id);
+    return this.http.delete<void>(this.host+"/users/"+id);
   }
 
-  public isExiste(langue:string):Observable<boolean>{
-    return this.http.get<boolean>(this.host+"/existe/"+langue);
+  public findUserById(id:number):Observable<User>{
+    return this.http.get<User>(this.host+"/users/"+id);
   }
+
+ /*  public isExiste(langue:string):Observable<boolean>{
+    return this.http.get<boolean>(this.host+"/existe/"+langue);
+  } */
 
   
 }

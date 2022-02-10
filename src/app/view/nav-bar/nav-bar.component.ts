@@ -1,4 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { DataNavbar } from 'src/app/model/data_nav_bar';
 import { Language } from 'src/app/model/language';
 import { TranslateService } from 'src/app/translate/translate.service';
@@ -15,7 +16,7 @@ export class NavBarComponent implements OnInit {
   public modalButton:string = "modal_close";
   public defaultLangues:Language[] = [];
 
-  constructor(private _translate: TranslateService) { }
+  constructor(private _translate: TranslateService,private router:Router) { }
 
   ngOnInit(): void {
     this.supportedLanguages = [
@@ -38,7 +39,7 @@ export class NavBarComponent implements OnInit {
 
   selectLang(lang: Language) {
     // choisir une langue;
-    this.supportedLanguages.forEach((elt) =>{
+    this.supportedLanguages.forEach((elt) =>{ 
       if(lang.langue == elt.key){
         this._translate.use(elt.value);
       }
@@ -69,6 +70,10 @@ isActive(){
 translateByCode(code:string){
   let res = this._translate.instant(code);
   return res;
+}
+goTo(){
+  this.router.navigateByUrl("/users");
+
 }
 
 }

@@ -36,7 +36,6 @@
               "node_modules/font-awesome/css/font-awesome.css",
               "node_modules/bootstrap4-duallistbox/dist/bootstrap-duallistbox.css",
               "node_modules/bootstrap-colorpicker/dist/css/bootstrap-colorpicker.css",
-              "node_modules/bootstrap-slider/dist/css/bootstrap-slider.css",
               "node_modules/admin-lte/plugins/fontawesome-free/css/all.min.css",
               "node_modules/admin-lte/plugins/overlayScrollbars/css/OverlayScrollbars.min.css",
               "node_modules/admin-lte/docs_html/assets/css/adminlte.css",

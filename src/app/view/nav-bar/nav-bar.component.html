@@ -2,7 +2,6 @@
     <div class="container-fluid d-none d-sm-block d-sm-none d-md-block">
       <div class="row mb-2">
         <div class="col-sm-8 float-start">
-          <!-- <h1 class="m-0 text-dark">Dashboard Client</h1> -->
           <div class="row btn-group">         
                 <button  *ngFor="let lang of dataNav['languages']"
                 (click)="selectLang(lang)"
@@ -10,11 +9,11 @@
                 {{ translateByCode(lang.langue) }}
             </button>           
           </div>
-        </div><!-- /.col -->
+        </div>
         <div class="col-sm-offset-3 col-sm-2 float-end">
           <button class=" btn-language" [ngClass] =" isActive() == false ? 'btn btn-default':'btn btn-primary'">{{translateByCode(modalButton)}}</button>
-       
+          
         </div>
-      </div><!-- /.row -->
+      </div>
     </div>
   </div>

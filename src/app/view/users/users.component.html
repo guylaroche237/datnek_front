@@ -1,31 +1,36 @@
- <!--  <div class="row">
-          <div class="col-md-12">
-            <div class="card">
-              <div class="card-head">
-                <div class="card-too">
-                    <div class="album py-5 bg-light">
-                        <div class="item" *ngFor="let user of data.users">
-                            <div class="row">
-                                <div class="col-lg-1">{{translateByCode(user.langue)}}</div>
-                                 <div class="col-lg-2"><span>{{data.typeNivo.nivoParler}}</span> : {{translateByCode(user.nivoParler)}}</div>
-                                <div class="col-lg-3"><span>{{data.typeNivo.nivoEcrit}}</span> : {{translateByCode(user.nivoEcrit)}}</div>
-                                <div class="col-lg-3"><span>{{data.typeNivo.nivoCompre}}</span> : {{translateByCode(user.nivoComprehension)}}</div>
-                                <div class="col-lg-3">
-                                    <button class="btn btn-success btn-space" (click)="sendData(user,'modifier')" >{{translateByCode(btn_update)}}</button>
-                                    <button class="btn btn-primary btn-space" (click)="sendData(user,'detail')">{{translateByCode(btn_detail)}}</button>
-                                    <button class="btn btn-danger btn-space" (click)="sendData(user,'suprimer')" >{{translateByCode(btn_delete)}}</button>
-                                    
-                                </div> 
 
-                            </div>
-                        </div>
-                       
-                
-                   </div>                
-                </div>
-              </div> 
-            </div>
-            
+<div class="">
+
+  <section class="content">
+    <div class="container-fluid">
+      <div class="card card-solid">
+        <div class="card-body pb-0">
+          <div class="row d-flex align-items-stretch">
+            <div class="col-4" *ngFor="let user of users | async">
+              <app-user></app-user>
+            </div>  
           </div>
- </div>  -->
+        </div>
+        <!-- /.card-body -->
+        <div class="card-footer">
+          <nav aria-label="Contacts Page Navigation">
+            <ul class="pagination justify-content-center m-0">
+              <li class="page-item active"><a class="page-link" href="#">1</a></li>
+              <li class="page-item"><a class="page-link" href="#">2</a></li>
+              <li class="page-item"><a class="page-link" href="#">3</a></li>
+              <li class="page-item"><a class="page-link" href="#">4</a></li>
+              <li class="page-item"><a class="page-link" href="#">5</a></li>
+              <li class="page-item"><a class="page-link" href="#">6</a></li>
+              <li class="page-item"><a class="page-link" href="#">7</a></li>
+              <li class="page-item"><a class="page-link" href="#">8</a></li>
+            </ul>
+          </nav>
+        </div>
+        <!-- /.card-footer -->
+      </div>
 
+    </div>
+
+
+  </section>
+</div>

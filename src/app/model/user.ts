@@ -1,16 +1,21 @@
 
 export class User{
     public id!:number;
-    public langue!:string;
-    public nivoParler!:string;
-    public nivoEcrit!:string;
-    public nivoComprehension!:string;
+    public nom!:string;
+    public prenom!:string;
+    public image!:string;
+    public poste!:string;
+    public dateNaiss!:string;
+    public dateCrea!:string;
 
-    constructor(langue:string,nivoParler:string,nivoEcrit:string,nivoCompre:string){
+    constructor(nom:string,prenom:string,image:string,poste:string,dateNaiss:string){
+        let dateNow:Date = new Date();
         
-        this.langue = langue;
-        this.nivoParler = nivoParler;
-        this.nivoEcrit = nivoEcrit;
-        this.nivoComprehension = nivoCompre;
+        this.nom = nom;
+        this.prenom = prenom;
+        this.image = image;
+        this.poste = poste;
+        this.dateNaiss = dateNaiss;
+        this.dateCrea = dateNow.toLocaleDateString()
     }
 }

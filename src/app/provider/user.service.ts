@@ -8,7 +8,7 @@ export class UserService {
     private users!:User[];
     private _currentLang!: string;
 
-    public get currentLang() {
+    /* public get currentLang() {
         return this._currentLang;
     }
 
@@ -22,5 +22,5 @@ export class UserService {
     
       public addUser(user:User){
         this.users.push(user);
-      }
-}
+      } */
+} 

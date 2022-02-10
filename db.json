@@ -1,0 +1,74 @@
+{
+  "users": [
+    {
+      "nom": "",
+      "prenom": "",
+      "image": "",
+      "poste": "",
+      "dateNaiss": "",
+      "dateCrea": "03/02/2022",
+      "id": 1
+    },
+    {
+      "nom": "Feukam",
+      "prenom": "Laroche",
+      "image": "../../../assets/avatar3.png",
+      "poste": "Marketing Digitale",
+      "dateNaiss": "2022-02-25",
+      "dateCrea": "03/02/2022",
+      "id": 2
+    },
+    {
+      "nom": "Joel",
+      "prenom": "Kamga",
+      "image": "../../../assets/avatar.png",
+      "poste": "Developpeur Back-End",
+      "dateNaiss": "1992-02-14",
+      "dateCrea": "03/02/2022",
+      "id": 3
+    },
+    {
+      "nom": "Marcelain",
+      "prenom": "paule",
+      "image": "../../../assets/avatar.png",
+      "poste": "DevOps",
+      "dateNaiss": "2022-02-19",
+      "dateCrea": "03/02/2022",
+      "id": 4
+    },
+    {
+      "nom": "",
+      "prenom": "",
+      "image": "",
+      "poste": "",
+      "dateNaiss": "",
+      "dateCrea": "03/02/2022",
+      "id": 5
+    },
+    {
+      "nom": null,
+      "prenom": null,
+      "image": null,
+      "poste": null,
+      "dateNaiss": null,
+      "dateCrea": "03/02/2022",
+      "id": 6
+    }
+  ],
+  "languages": [
+    {
+      "langue": "eng_lang",
+      "nivoParler": "courant",
+      "nivoEcrit": "courant",
+      "nivoComprehension": "courant",
+      "id": 1
+    },
+    {
+      "langue": "spn_lang",
+      "nivoParler": "niv_exl",
+      "nivoEcrit": "niv_exl",
+      "nivoComprehension": "niv_exl",
+      "id": 2
+    }
+  ]
+}

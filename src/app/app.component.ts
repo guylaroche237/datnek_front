@@ -10,9 +10,7 @@ import { UserProviderService } from './provider/user-provider.service';
 })
 export class AppComponent {
   title = 'datnek';
-  constructor(private router:Router,private userProvider:UserProviderService) { }
-
-  public users!:User[];
+  constructor(private router:Router) { }
 
   ngOnInit(): void {
     //au lancement de la page dirige vers dashboard

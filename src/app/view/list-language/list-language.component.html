@@ -6,7 +6,7 @@
           <div class="card-too">
               <div class="">
                   <div class="item" *ngFor="let language of data.languages">
-                    <app-list-item [data] = "{'langue':language,'nivo':data.typeNivo}" (dataEvent)="receveData($event)"></app-list-item>      
+                    <app-list-item [data] = "{langue:language,nivo:data.typeNivo}" (dataEvent)="receveData($event)"></app-list-item>      
                   </div>
              </div>                
           </div>

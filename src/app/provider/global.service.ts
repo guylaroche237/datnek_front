@@ -1,23 +1,16 @@
 import { Injectable } from '@angular/core';
+import { TranslateService } from '../translate/translate.service';
 
 @Injectable({
   providedIn: 'root'
 })
 export class GlobalService {
 
-  constructor() { }
+  constructor(private _translate:TranslateService) { }
 
-  public checkExiste(list:string[],val:string): boolean{
-    let rep:boolean = false;
-    if(list.length > 0){
-      for(let i = 0;i<list.length;i++){
-        if(list[i].valueOf()===val.valueOf()){
-          rep = true;
-          break;
-          
-        }
-      }
-    }
-    return rep;
+  translateByCode(code:string){
+    let res = this._translate.instant(code);
+    return res;
   }
+
 }

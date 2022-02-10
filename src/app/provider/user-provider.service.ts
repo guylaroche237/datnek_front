@@ -11,7 +11,7 @@ export class UserProviderService {
 
   constructor(private userRequest:UserRequestService) { }
 
-  public get getUsers(){
+  /* public get getUsers(){
     return this.users;
   } 
 
@@ -30,5 +30,5 @@ export class UserProviderService {
         this.users.push(usr);
       }
     );
-  } 
+  }  */
 }

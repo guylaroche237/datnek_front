@@ -22,6 +22,12 @@ import { ListLanguageComponent } from './view/list-language/list-language.compon
 import { ListItemComponent } from './view/list-item/list-item.component';
 import { LanguageFormComponent } from './view/language-form/language-form.component';
 import { DetailComponent } from './view/detail/detail.component';
+import { UserComponent } from './view/users/user/user.component';
+import { UserDetailComponent } from './view/users/user-detail/user-detail.component';
+import { NgxsModule } from '@ngxs/store';
+import { UserState } from './ngxs/users/users.state';
+import { NgxsReduxDevtoolsPluginModule } from '@ngxs/devtools-plugin';
+import { NgxsLoggerPluginModule } from '@ngxs/logger-plugin';
 //import { UserProviderService } from './provider/user-provider.service';
 
 
@@ -47,14 +53,20 @@ import { DetailComponent } from './view/detail/detail.component';
     ListLanguageComponent,
     ListItemComponent,
     LanguageFormComponent,
-    DetailComponent
+    DetailComponent,
+    UserComponent,
+    UserDetailComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    NgxsModule.forRoot([UserState]),
+    NgxsReduxDevtoolsPluginModule.forRoot(),
+    NgxsLoggerPluginModule.forRoot(),
+    HttpClientModule,
    /*  TranslateModule.forRoot({
       defaultLanguage: 'en-US',
       loader: {

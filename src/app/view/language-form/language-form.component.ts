@@ -17,7 +17,6 @@ export class LanguageFormComponent implements OnInit {
   @Output() dataEventForm:EventEmitter<Language[]> = new EventEmitter<Language[]>();
   languageForm!: FormGroup;
   submitted = false;
-  //list:Language[] = [];
   public language!:Language;
   public nullLanguage:Language = new Language('','','','');
   
@@ -77,8 +76,8 @@ isExiste(languages:Language[],lang:Language){
 sendData(methode:string,lang:Language){
   if(methode == 'save' && lang.id == null){
     this.languageRequest.isExiste(lang.langue).subscribe(
-      (reponse:boolean) =>{
-        if(reponse == false){
+      (reponse:Language[]) =>{
+        if(reponse.length == 0){
           this.languageRequest.saveLanguage(lang).subscribe(
             (res: Language) =>{
              this.languageRequest.findAllsLanguages().subscribe(
@@ -93,16 +92,23 @@ sendData(methode:string,lang:Language){
     );
 
   }else if(methode == 'update' && lang.id != null && this.dataForm.code == lang.langue){
-      this.languageRequest.updateLanguage(lang).subscribe(
-        (res : Language) =>{
-          this.languageRequest.findAllsLanguages().subscribe(
-            (lst :Language[])=>{
-              this.dataEventForm.emit(lst);
+    this.languageRequest.isExiste(lang.langue).subscribe(
+      (response:Language[]) =>{
+        if(response.length > 0){
+          this.languageRequest.updateLanguage(lang).subscribe(
+            (res : Language) =>{
+              this.languageRequest.findAllsLanguages().subscribe(
+                (lst :Language[])=>{
+                  this.dataEventForm.emit(lst);
+                }
+              );
+      
             }
           );
-  
         }
-      );
+      }
+    );
+     
    
      
   }

@@ -1,8 +1,163 @@
-       
-        <router-outlet>
-          
-        </router-outlet>
 
+<div id="content" class="container p-0">
+        <div class="profile-header">
+            <div class="profile-header-cover"></div>
+            <div class="profile-header-content">
+                <div class="profile-header-img">
+                    <img src="../../../assets/avatar5.png" alt="" />
+                </div>
+                <div class="profile-header-info">
+                    <h4 class="m-t-sm">Feukam Feukouo Guy Laroche</h4>
+                    <p class="m-b-sm"> Developer FullStack / Mobile (Flutter)</p>
+                    <a href="#" class="btn btn-xs btn-primary mb-4 space">Edit Profile</a>
+                    <a (click)="openModal()" class="btn btn-xs btn-primary mb-4 space">Add User</a>
+                </div>
+            </div>
+    
+            <ul class="profile-header-tab nav nav-tabs">
+                <li class="nav-item"><a routerLink="/datnek/users" class="nav-link" data-toggle="tab">Peoples</a></li>
+                <li class="nav-item"><a routerLink="/datnek/home" class="nav-link" data-toggle="tab">languages</a></li>
+                <li class="nav-item"><a href="#profile-photos" class="nav-link active show" data-toggle="tab">PHOTOS</a></li>
+                <li class="nav-item"><a href="#profile-videos" class="nav-link" data-toggle="tab">VIDEOS</a></li>
+                <li class="nav-item"><a href="#profile-friends" class="nav-link" data-toggle="tab">FRIENDS</a></li>
+            </ul>
+        </div>
+    
+        <div class="profile-container">
+            <div class="row row-space-20">
+                <div class="col-md-10">
+                    <div class="tab-content p-0">
+                        <div class="tab-pane active show" id="profile-photos">
+                            <!-- div class="m-b-10"><b>Photos (30)</b></div> -->
+                            <router-outlet></router-outlet>
+                
+                            
+                        </div>                    
+                    </div>
+                </div>
+    
+                <div class="col-md-2 hidden-xs hidden-sm">
+                    <ul class="profile-info-list">
+                        <li class="title">PERSONAL INFORMATION</li>
+                        <li>
+                            <div class="field">Occupation:</div>
+                            <div class="value">UXUI / Frontend Developer</div>
+                        </li>
+                        <li>
+                            <div class="field">Skills:</div>
+                            <div class="value">C++, PHP, HTML5, CSS, jQuery, MYSQL, Ionic, Laravel, Phonegap, Bootstrap, Angular JS, Angular JS, Asp.net</div>
+                        </li>
+                        <li>
+                            <div class="field">Birth of Date:</div>
+                            <div class="value">1989/11/04</div>
+                        </li>
+                        <li>
+                            <div class="field">Country:</div>
+                            <div class="value">San Francisco</div>
+                        </li>
+                        <li>
+                            <div class="field">Address:</div>
+                            <div class="value">
+                                <address class="m-b-0">
+                                    Twitter, Inc.<br />
+                                    1355 Market Street, Suite 900<br />
+                                    San Francisco, CA 94103
+                                </address>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="field">Phone No.:</div>
+                            <div class="value">
+                                (123) 456-7890
+                            </div>
+                        </li>
+                        <li class="title">FRIEND LIST (9)</li>
+                        <li class="img-list">
+                            <a href="#" class="m-b-5"><img src="https://via.placeholder.com/150x150/008B8B/000000" alt="" /></a>
+                            <a href="#" class="m-b-5"><img src="https://via.placeholder.com/150x150/008B8B/000000" alt="" /></a>
+                            <a href="#" class="m-b-5"><img src="https://via.placeholder.com/150x150/008B8B/000000" alt="" /></a>
+                            <a href="#" class="m-b-5"><img src="https://via.placeholder.com/150x150/008B8B/000000" alt="" /></a>
+                            <a href="#" class="m-b-5"><img src="https://via.placeholder.com/150x150/008B8B/000000" alt="" /></a>
+                            <a href="#" class="m-b-5"><img src="https://via.placeholder.com/150x150/008B8B/000000" alt="" /></a>
+                            <a href="#" class="m-b-5"><img src="https://via.placeholder.com/150x150/008B8B/000000" alt="" /></a>
+                            <a href="#" class="m-b-5"><img src="https://via.placeholder.com/150x150/008B8B/000000" alt="" /></a>
+                            <a href="#" class="m-b-5"><img src="https://via.placeholder.com/150x150/008B8B/000000" alt="" /></a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    
+<div id="main-container" >
+    <div class="modal fade" id="modal-add">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h4 class="modal-title">New User</h4>
+
+            </div>
+            <div class="modal-body">
+                <form [formGroup]="addForm" (ngSubmit)="onSubmit()">
+                    <div class="row">
+                        <div class="col">
+                            <div class="form-group">
+                                <label for="">Nom</label>
+                                <input type="text" class="form-control" formControlName="nom">
+                            </div>
+                        </div>
+
+                        <div class="col">
+                            <div class="form-group">
+                                <label for="">Prenom</label>
+                                <input type="text" class="form-control" formControlName="prenom">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="">Date Naissance</label>
+                        <input type="date" class="form-control" formControlName="dateNaiss">
+                    </div>
+
+                    <div class="row">
+                        <div class="col">
+                            <label for="">Profil</label>
+                            <select formControlName="image" class="form-control">
+                                <option>Selectionner Une Image</option>
+                                <option *ngFor="let img of images" value="{{img}}"> {{img}}</option>
+                              </select>
+                        </div>
+                        <div class="col">
+                            <label for="">Poste</label>
+                            <select formControlName="poste" class="form-control">
+                                <option>Selectionner Un Poste</option>
+                                <option *ngFor="let poste of postes" value="{{poste}}">{{poste}}</option>
+                              </select>
+                        </div>
+                    </div>
+
+                    <div class="form-group modal-footer">
+                        <div class="row">
+                            <div class="">
+                                <button class="btn btn-primary space" type="submit">Save</button>
+                                <button class="btn btn-danger space" (click)="closeModal()">Close</button>
+                            </div>
+                        </div>
+                    </div>
+                    
+
+                </form>
+                              
+            </div>
+        
+          </div>
+        </div>
+      </div> 
+
+</div>
+       
        
        
    
